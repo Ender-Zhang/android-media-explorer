@@ -40,11 +40,14 @@ fun MediaExplorerApp(viewModel: MediaViewModel) {
     val isAdbServerRunning by viewModel.isAdbServerRunning.collectAsState()
     val serverUrl by viewModel.serverUrl.collectAsState()
     val useIncrementalTransfer by viewModel.useIncrementalTransfer.collectAsState()
+    val transferProgress by viewModel.transferProgress.collectAsState()
     
     var selectedItem by remember { mutableStateOf<MediaItem?>(null) }
     var showTransferDialog by remember { mutableStateOf(false) }
     var showTransferModeDialog by remember { mutableStateOf(false) }
     var showTransferHistoryDialog by remember { mutableStateOf(false) }
+    var showDeleteConfirmDialog by remember { mutableStateOf(false) }
+    var showShareDialog by remember { mutableStateOf(false) }
     var showOptionsMenu by remember { mutableStateOf(false) }
     var selectedTransferMode by remember { mutableStateOf("wifi") }
     
@@ -99,6 +102,26 @@ fun MediaExplorerApp(viewModel: MediaViewModel) {
                                     Icon(Icons.Default.Send, contentDescription = null)
                                 }
                             )
+                            DropdownMenuItem(
+                                text = { Text("批量删除") },
+                                onClick = {
+                                    showOptionsMenu = false
+                                    showDeleteConfirmDialog = true
+                                },
+                                leadingIcon = {
+                                    Icon(Icons.Default.Delete, contentDescription = null)
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = { Text("分享") },
+                                onClick = {
+                                    showOptionsMenu = false
+                                    showShareDialog = true
+                                },
+                                leadingIcon = {
+                                    Icon(Icons.Default.Share, contentDescription = null)
+                                }
+                            )
                         }
                     } else {
                         // 普通模式的操作按钮
@@ -116,46 +139,58 @@ fun MediaExplorerApp(viewModel: MediaViewModel) {
             )
         }
     ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            // 过滤器标签
-            if (!isSelectionMode) {
-                FilterTabs(
-                    currentFilter = currentFilter,
-                    onFilterChanged = { viewModel.setFilter(it) }
-                )
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                // 过滤器标签
+                if (!isSelectionMode) {
+                    FilterTabs(
+                        currentFilter = currentFilter,
+                        onFilterChanged = { viewModel.setFilter(it) }
+                    )
+                }
+                
+                // 媒体网格
+                if (isLoading) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                } else if (mediaItems.isEmpty()) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text("未找到媒体文件")
+                    }
+                } else {
+                    MediaGrid(
+                        mediaItems = mediaItems,
+                        isSelectionMode = isSelectionMode,
+                        selectedItems = selectedItems,
+                        onItemClick = { item ->
+                            if (isSelectionMode) {
+                                viewModel.toggleItemSelection(item.id)
+                            } else {
+                                selectedItem = item
+                            }
+                        }
+                    )
+                }
             }
             
-            // 媒体网格
-            if (isLoading) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
-                }
-            } else if (mediaItems.isEmpty()) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("未找到媒体文件")
-                }
-            } else {
-                MediaGrid(
-                    mediaItems = mediaItems,
-                    isSelectionMode = isSelectionMode,
-                    selectedItems = selectedItems,
-                    onItemClick = { item ->
-                        if (isSelectionMode) {
-                            viewModel.toggleItemSelection(item.id)
-                        } else {
-                            selectedItem = item
-                        }
-                    }
+            // 传输进度指示器（浮动在底部）
+            if (transferProgress.isTransferring) {
+                TransferProgressIndicator(
+                    progress = transferProgress,
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
                 )
             }
         }
@@ -201,6 +236,25 @@ fun MediaExplorerApp(viewModel: MediaViewModel) {
             TransferHistoryDialog(
                 viewModel = viewModel,
                 onDismiss = { showTransferHistoryDialog = false }
+            )
+        }
+        
+        // 批量删除确认对话框
+        if (showDeleteConfirmDialog) {
+            BatchDeleteDialog(
+                viewModel = viewModel,
+                selectedCount = selectedItems.size,
+                onDismiss = { showDeleteConfirmDialog = false }
+            )
+        }
+        
+        // 分享对话框
+        if (showShareDialog) {
+            val context = LocalContext.current
+            ShareFilesDialog(
+                viewModel = viewModel,
+                context = context,
+                onDismiss = { showShareDialog = false }
             )
         }
     }
@@ -992,6 +1046,269 @@ fun TransferHistoryDialog(
             }
         )
     }
+}
+
+/**
+ * 传输进度指示器
+ */
+@Composable
+fun TransferProgressIndicator(
+    progress: TransferProgressState,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier
+            .padding(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            // 标题行
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "正在传输",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                )
+                Text(
+                    text = "${progress.completedFiles}/${progress.totalFiles}",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            
+            // 当前文件名
+            if (progress.currentFileName.isNotEmpty()) {
+                Text(
+                    text = progress.currentFileName,
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 1,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            
+            // 进度条
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                LinearProgressIndicator(
+                    progress = progress.overallProgress,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(8.dp),
+                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                )
+                
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "${progress.progressPercentage}%",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                    )
+                    Text(
+                        text = "${progress.formattedTransferredSize} / ${progress.formattedTotalSize}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+            
+            // 速度和剩余时间
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Speed,
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Text(
+                        text = progress.formattedSpeed,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.AccessTime,
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Text(
+                        text = progress.formattedTimeRemaining,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        }
+    }
+}
+
+/**
+ * 批量删除确认对话框
+ */
+@Composable
+fun BatchDeleteDialog(
+    viewModel: MediaViewModel,
+    selectedCount: Int,
+    onDismiss: () -> Unit
+) {
+    var isDeleting by remember { mutableStateOf(false) }
+    var message by remember { mutableStateOf("") }
+    val coroutineScope = rememberCoroutineScope()
+    
+    AlertDialog(
+        onDismissRequest = { if (!isDeleting) onDismiss() },
+        icon = {
+            Icon(Icons.Default.Delete, contentDescription = null, tint = MaterialTheme.colorScheme.error)
+        },
+        title = {
+            Text("批量删除")
+        },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(
+                    text = "确定要删除选中的 $selectedCount 个文件吗？",
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Text(
+                    text = "⚠️ 警告：删除操作不可撤销！",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.error
+                )
+                
+                if (message.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = message,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = if (message.contains("成功")) {
+                            MaterialTheme.colorScheme.primary
+                        } else {
+                            MaterialTheme.colorScheme.error
+                        }
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    isDeleting = true
+                    viewModel.deleteSelectedFiles { result ->
+                        message = result
+                        isDeleting = false
+                        coroutineScope.launch {
+                            delay(1500)
+                            onDismiss()
+                        }
+                    }
+                },
+                enabled = !isDeleting,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.error
+                )
+            ) {
+                if (isDeleting) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(16.dp),
+                        color = Color.White,
+                        strokeWidth = 2.dp
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                }
+                Text(if (isDeleting) "删除中..." else "确认删除")
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                enabled = !isDeleting
+            ) {
+                Text("取消")
+            }
+        }
+    )
+}
+
+/**
+ * 分享文件对话框
+ */
+@Composable
+fun ShareFilesDialog(
+    viewModel: MediaViewModel,
+    context: android.content.Context,
+    onDismiss: () -> Unit
+) {
+    val selectedFiles = viewModel.getSelectedMediaItems()
+    
+    LaunchedEffect(Unit) {
+        // 创建分享Intent
+        val shareIntent = android.content.Intent().apply {
+            if (selectedFiles.size == 1) {
+                action = android.content.Intent.ACTION_SEND
+                putExtra(android.content.Intent.EXTRA_STREAM, selectedFiles[0].uri)
+                type = selectedFiles[0].mimeType
+            } else {
+                action = android.content.Intent.ACTION_SEND_MULTIPLE
+                val uris = ArrayList(selectedFiles.map { it.uri })
+                putParcelableArrayListExtra(android.content.Intent.EXTRA_STREAM, uris)
+                type = "*/*"
+            }
+            addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        
+        try {
+            val chooserIntent = android.content.Intent.createChooser(shareIntent, "分享到")
+            context.startActivity(chooserIntent)
+        } catch (e: Exception) {
+            android.widget.Toast.makeText(context, "分享失败: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
+        }
+        
+        // 关闭对话框
+        onDismiss()
+    }
+    
+    // 显示加载提示
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("正在准备分享...") },
+        text = {
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        },
+        confirmButton = {}
+    )
 }
 
 

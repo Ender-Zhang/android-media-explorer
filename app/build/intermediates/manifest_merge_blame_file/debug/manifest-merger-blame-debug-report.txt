@@ -40,138 +40,162 @@
 26-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:20:5-76
 26-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:20:22-73
 27
-28    <permission
-28-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
-29        android:name="com.mediaexplorer.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-29-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
-30        android:protectionLevel="signature" />
-30-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
-31
-32    <uses-permission android:name="com.mediaexplorer.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-32-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
-32-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
-33
-34    <application
-34-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:22:5-42:19
-35        android:allowBackup="true"
-35-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:23:9-35
-36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-36-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
-37        android:dataExtractionRules="@xml/data_extraction_rules"
-37-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:24:9-65
-38        android:debuggable="true"
-39        android:extractNativeLibs="false"
-40        android:fullBackupContent="@xml/backup_rules"
-40-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:25:9-54
-41        android:icon="@drawable/ic_launcher"
-41-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:26:9-45
-42        android:label="媒体浏览器"
-42-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:27:9-30
-43        android:requestLegacyExternalStorage="true"
-43-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:31:9-52
-44        android:roundIcon="@drawable/ic_launcher"
-44-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:28:9-50
-45        android:supportsRtl="true"
-45-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:29:9-35
-46        android:theme="@style/Theme.MediaExplorer" >
-46-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:30:9-51
-47        <activity
-47-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:33:9-41:20
-48            android:name="com.mediaexplorer.MainActivity"
-48-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:34:13-41
-49            android:exported="true"
-49-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:35:13-36
-50            android:theme="@style/Theme.MediaExplorer" >
-50-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:36:13-55
-51            <intent-filter>
-51-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:37:13-40:29
-52                <action android:name="android.intent.action.MAIN" />
-52-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:38:17-69
-52-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:38:25-66
-53
-54                <category android:name="android.intent.category.LAUNCHER" />
-54-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:39:17-77
-54-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:39:27-74
-55            </intent-filter>
-56        </activity>
-57        <activity
-57-->[androidx.compose.ui:ui-test-manifest:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/fa7874f77b28c8427ee3609f7197a31b/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:23:9-25:39
-58            android:name="androidx.activity.ComponentActivity"
-58-->[androidx.compose.ui:ui-test-manifest:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/fa7874f77b28c8427ee3609f7197a31b/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:24:13-63
-59            android:exported="true" />
-59-->[androidx.compose.ui:ui-test-manifest:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/fa7874f77b28c8427ee3609f7197a31b/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:25:13-36
-60        <activity
-60-->[androidx.compose.ui:ui-tooling-android:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/d2aa90db209a667a27d81ce51637b215/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
-61            android:name="androidx.compose.ui.tooling.PreviewActivity"
-61-->[androidx.compose.ui:ui-tooling-android:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/d2aa90db209a667a27d81ce51637b215/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
-62            android:exported="true" />
-62-->[androidx.compose.ui:ui-tooling-android:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/d2aa90db209a667a27d81ce51637b215/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
-63
-64        <provider
-64-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
-65            android:name="androidx.startup.InitializationProvider"
-65-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:25:13-67
-66            android:authorities="com.mediaexplorer.androidx-startup"
-66-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:26:13-68
-67            android:exported="false" >
-67-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:27:13-37
-68            <meta-data
-68-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
-69                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-69-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
-70                android:value="androidx.startup" />
-70-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
-71            <meta-data
-71-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/yuchenzhang/.gradle/caches/transforms-3/2124fd6e2c679a9a9f8018625a80e158/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
-72                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-72-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/yuchenzhang/.gradle/caches/transforms-3/2124fd6e2c679a9a9f8018625a80e158/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
-73                android:value="androidx.startup" />
-73-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/yuchenzhang/.gradle/caches/transforms-3/2124fd6e2c679a9a9f8018625a80e158/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
-74            <meta-data
-74-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-75                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-75-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-76                android:value="androidx.startup" />
-76-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-77        </provider>
-78
-79        <receiver
-79-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-80            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-80-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-81            android:directBootAware="false"
-81-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-82            android:enabled="true"
-82-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-83            android:exported="true"
-83-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-84            android:permission="android.permission.DUMP" >
-84-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-85            <intent-filter>
-85-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-86                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-87            </intent-filter>
-88            <intent-filter>
-88-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-89                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-89-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-89-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-90            </intent-filter>
-91            <intent-filter>
-91-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-92                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-92-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-92-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-93            </intent-filter>
-94            <intent-filter>
-94-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-95                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-95-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-95-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-96            </intent-filter>
-97        </receiver>
-98    </application>
-99
-100</manifest>
+28    <!-- 后台传输服务权限 -->
+29    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+29-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:23:5-77
+29-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:23:22-74
+30    <uses-permission android:name="android.permission.WAKE_LOCK" />
+30-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:24:5-68
+30-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:24:22-65
+31    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+31-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:25:5-77
+31-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:25:22-74
+32
+33    <permission
+33-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+34        android:name="com.mediaexplorer.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+34-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+35        android:protectionLevel="signature" />
+35-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+36
+37    <uses-permission android:name="com.mediaexplorer.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+37-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+37-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+38
+39    <application
+39-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:27:5-54:19
+40        android:allowBackup="true"
+40-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:28:9-35
+41        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+41-->[androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+42        android:dataExtractionRules="@xml/data_extraction_rules"
+42-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:29:9-65
+43        android:debuggable="true"
+44        android:extractNativeLibs="false"
+45        android:fullBackupContent="@xml/backup_rules"
+45-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:30:9-54
+46        android:icon="@drawable/ic_launcher"
+46-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:31:9-45
+47        android:label="媒体浏览器"
+47-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:32:9-30
+48        android:requestLegacyExternalStorage="true"
+48-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:36:9-52
+49        android:roundIcon="@drawable/ic_launcher"
+49-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:33:9-50
+50        android:supportsRtl="true"
+50-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:34:9-35
+51        android:theme="@style/Theme.MediaExplorer" >
+51-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:35:9-51
+52        <activity
+52-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:38:9-46:20
+53            android:name="com.mediaexplorer.MainActivity"
+53-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:39:13-41
+54            android:exported="true"
+54-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:40:13-36
+55            android:theme="@style/Theme.MediaExplorer" >
+55-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:41:13-55
+56            <intent-filter>
+56-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:42:13-45:29
+57                <action android:name="android.intent.action.MAIN" />
+57-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:43:17-69
+57-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:43:25-66
+58
+59                <category android:name="android.intent.category.LAUNCHER" />
+59-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:44:17-77
+59-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:44:27-74
+60            </intent-filter>
+61        </activity>
+62
+63        <!-- 后台文件传输服务 -->
+64        <service
+64-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:49:9-53:56
+65            android:name="com.mediaexplorer.FileTransferService"
+65-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:50:13-48
+66            android:enabled="true"
+66-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:51:13-35
+67            android:exported="false"
+67-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:52:13-37
+68            android:foregroundServiceType="dataSync" />
+68-->/Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:53:13-53
+69
+70        <activity
+70-->[androidx.compose.ui:ui-test-manifest:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/fa7874f77b28c8427ee3609f7197a31b/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:23:9-25:39
+71            android:name="androidx.activity.ComponentActivity"
+71-->[androidx.compose.ui:ui-test-manifest:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/fa7874f77b28c8427ee3609f7197a31b/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:24:13-63
+72            android:exported="true" />
+72-->[androidx.compose.ui:ui-test-manifest:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/fa7874f77b28c8427ee3609f7197a31b/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:25:13-36
+73        <activity
+73-->[androidx.compose.ui:ui-tooling-android:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/d2aa90db209a667a27d81ce51637b215/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+74            android:name="androidx.compose.ui.tooling.PreviewActivity"
+74-->[androidx.compose.ui:ui-tooling-android:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/d2aa90db209a667a27d81ce51637b215/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+75            android:exported="true" />
+75-->[androidx.compose.ui:ui-tooling-android:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/d2aa90db209a667a27d81ce51637b215/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+76
+77        <provider
+77-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
+78            android:name="androidx.startup.InitializationProvider"
+78-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:25:13-67
+79            android:authorities="com.mediaexplorer.androidx-startup"
+79-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:26:13-68
+80            android:exported="false" >
+80-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:27:13-37
+81            <meta-data
+81-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
+82                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+82-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
+83                android:value="androidx.startup" />
+83-->[androidx.emoji2:emoji2:1.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/dcec859b1c76579cb142b9c33d4223c8/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
+84            <meta-data
+84-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/yuchenzhang/.gradle/caches/transforms-3/2124fd6e2c679a9a9f8018625a80e158/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+85                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+85-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/yuchenzhang/.gradle/caches/transforms-3/2124fd6e2c679a9a9f8018625a80e158/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+86                android:value="androidx.startup" />
+86-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/yuchenzhang/.gradle/caches/transforms-3/2124fd6e2c679a9a9f8018625a80e158/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+87            <meta-data
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+88                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+88-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+89                android:value="androidx.startup" />
+89-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+90        </provider>
+91
+92        <receiver
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+93            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+94            android:directBootAware="false"
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+95            android:enabled="true"
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+96            android:exported="true"
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+97            android:permission="android.permission.DUMP" >
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+98            <intent-filter>
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+99                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+100            </intent-filter>
+101            <intent-filter>
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+102                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+103            </intent-filter>
+104            <intent-filter>
+104-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+105                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+106            </intent-filter>
+107            <intent-filter>
+107-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+108                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+108-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuchenzhang/.gradle/caches/transforms-3/9ddc167627fc7c1961c23aa75a1491d5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+109            </intent-filter>
+110        </receiver>
+111    </application>
+112
+113</manifest>

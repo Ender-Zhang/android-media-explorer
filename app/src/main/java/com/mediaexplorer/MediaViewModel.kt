@@ -17,6 +17,8 @@ class MediaViewModel(application: Application) : AndroidViewModel(application) {
     private val fileTransferServer = FileTransferServer(application)
     private val adbTransferServer = AdbTransferServer(application)
     private val transferHistory = TransferHistory(application)
+    private val transferProgressManager = TransferProgressManager()
+    private val transferStateManager = TransferStateManager(application)
     
     private val _mediaItems = MutableStateFlow<List<MediaItem>>(emptyList())
     val mediaItems: StateFlow<List<MediaItem>> = _mediaItems.asStateFlow()
@@ -47,6 +49,9 @@ class MediaViewModel(application: Application) : AndroidViewModel(application) {
     // 增量传输选项
     private val _useIncrementalTransfer = MutableStateFlow(false)
     val useIncrementalTransfer: StateFlow<Boolean> = _useIncrementalTransfer.asStateFlow()
+    
+    // 传输进度
+    val transferProgress: StateFlow<TransferProgressState> = transferProgressManager.progressState
     
     private var allMediaItems: List<MediaItem> = emptyList()
     
@@ -228,6 +233,9 @@ class MediaViewModel(application: Application) : AndroidViewModel(application) {
             return
         }
         
+        // 保存传输状态以支持断点续传
+        saveTransferState(filesToTransfer)
+        
         adbTransferServer.setFilesToTransfer(filesToTransfer)
         adbTransferServer.start { error ->
             onError(error)
@@ -235,6 +243,49 @@ class MediaViewModel(application: Application) : AndroidViewModel(application) {
         
         _isAdbServerRunning.value = true
         onSuccess()
+    }
+    
+    /**
+     * 保存传输状态
+     */
+    private fun saveTransferState(files: List<MediaItem>) {
+        val fileInfoList = files.map { item ->
+            FileTransferInfo(
+                filePath = item.path,
+                fileName = item.displayName,
+                fileSize = item.size,
+                transferredBytes = 0L,
+                isCompleted = false
+            )
+        }
+        
+        val transferState = TransferState(
+            transferId = System.currentTimeMillis().toString(),
+            files = fileInfoList
+        )
+        
+        transferStateManager.saveCurrentTransferState(transferState)
+    }
+    
+    /**
+     * 检查是否有未完成的传输
+     */
+    fun hasIncompleteTransfer(): Boolean {
+        return transferStateManager.hasIncompleteTransfer()
+    }
+    
+    /**
+     * 获取传输进度
+     */
+    fun getTransferStateProgress(): Float {
+        return transferStateManager.getTransferProgress()
+    }
+    
+    /**
+     * 清除传输状态
+     */
+    fun clearTransferState() {
+        transferStateManager.clearCurrentTransferState()
     }
     
     /**
@@ -343,6 +394,37 @@ class MediaViewModel(application: Application) : AndroidViewModel(application) {
     fun getAllTransferRecords(): List<TransferHistory.TransferRecord> {
         return transferHistory.getTransferredFiles().values.toList()
             .sortedByDescending { it.transferTime }
+    }
+    
+    /**
+     * 批量删除选中的文件
+     */
+    fun deleteSelectedFiles(onResult: (String) -> Unit) {
+        viewModelScope.launch {
+            val filesToDelete = getSelectedMediaItems()
+            if (filesToDelete.isEmpty()) {
+                onResult("没有选中的文件")
+                return@launch
+            }
+            
+            val (successCount, failCount) = fileTransferServer.deleteTransferredFiles(filesToDelete)
+            
+            // 清空选择
+            clearSelection()
+            
+            // 退出选择模式
+            _isSelectionMode.value = false
+            
+            // 刷新列表
+            refresh()
+            
+            val message = if (failCount > 0) {
+                "已删除 $successCount 个文件，失败 $failCount 个"
+            } else {
+                "已成功删除 $successCount 个文件"
+            }
+            onResult(message)
+        }
     }
     
     /**

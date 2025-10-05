@@ -13,6 +13,7 @@ import json
 import os
 import sys
 import subprocess
+import hashlib
 from pathlib import Path
 from datetime import datetime
 
@@ -20,6 +21,7 @@ class AdbTransferClient:
     def __init__(self, host='localhost', port=12345):
         self.host = host
         self.port = port
+        self.state_file = '.transfer_state.json'
     
     def setup_port_forward(self):
         """设置ADB端口转发"""
@@ -100,17 +102,46 @@ class AdbTransferClient:
             sock.close()
             return None
     
-    def download_file(self, index, save_dir):
-        """下载单个文件"""
+    def download_file(self, index, save_dir, resume=True):
+        """下载单个文件（支持断点续传）"""
         sock = self.connect()
         if not sock:
             return False
         
         try:
-            self.send_command(sock, f"GET {index}")
-            
             # 使用文件对象按行读取
             sock_file = sock.makefile('rb')
+            
+            # 首先获取文件信息
+            file_list = self.get_file_list()
+            if not file_list or index >= len(file_list):
+                print(f"❌ 无效的文件索引: {index}")
+                sock.close()
+                return False
+            
+            file_info = file_list[index]
+            filename = file_info['name']
+            file_size = file_info['size']
+            
+            # 确保保存目录存在
+            os.makedirs(save_dir, exist_ok=True)
+            
+            # 保存文件路径
+            filepath = os.path.join(save_dir, filename)
+            
+            # 检查是否支持断点续传
+            offset = 0
+            if resume and os.path.exists(filepath):
+                offset = os.path.getsize(filepath)
+                if offset >= file_size:
+                    print(f"✅ 文件已存在: {filename}")
+                    sock.close()
+                    return True
+                print(f"🔄 断点续传: {filename} (从 {self.format_size(offset)} 继续)")
+                self.send_command(sock, f"RESUME {index} {offset}")
+            else:
+                print(f"📥 下载: {filename} ({self.format_size(file_size)})")
+                self.send_command(sock, f"GET {index}")
             
             # 读取响应状态
             status = sock_file.readline().decode().strip()
@@ -120,33 +151,24 @@ class AdbTransferClient:
                 sock.close()
                 return False
             
-            # 读取文件大小
+            # 读取响应头
             size_line = sock_file.readline().decode().strip()
-            file_size = int(size_line)
+            response_file_size = int(size_line)
+            
+            # 如果是断点续传，读取偏移量
+            response_offset = 0
+            if resume and offset > 0:
+                offset_line = sock_file.readline().decode().strip()
+                response_offset = int(offset_line)
             
             # 读取文件名
             filename_line = sock_file.readline().decode().strip()
-            filename = filename_line
             
-            # 确保保存目录存在
-            os.makedirs(save_dir, exist_ok=True)
+            # 打开文件（追加模式如果是断点续传）
+            mode = 'ab' if (resume and offset > 0) else 'wb'
+            received = offset
             
-            # 保存文件
-            filepath = os.path.join(save_dir, filename)
-            
-            # 如果文件存在，添加序号
-            if os.path.exists(filepath):
-                base, ext = os.path.splitext(filename)
-                counter = 1
-                while os.path.exists(filepath):
-                    filepath = os.path.join(save_dir, f"{base}_{counter}{ext}")
-                    counter += 1
-            
-            print(f"📥 下载: {filename} ({self.format_size(file_size)})")
-            
-            # 接收文件内容
-            received = 0
-            with open(filepath, 'wb') as f:
+            with open(filepath, mode) as f:
                 while received < file_size:
                     chunk_size = min(65536, file_size - received)
                     chunk = sock_file.read(chunk_size)
@@ -171,10 +193,19 @@ class AdbTransferClient:
                 return True
             else:
                 print(f"⚠️  下载不完整: {received}/{file_size} 字节")
+                print(f"💡 提示: 再次运行脚本可从断点继续下载")
                 sock_file.close()
                 sock.close()
                 return False
             
+        except KeyboardInterrupt:
+            print(f"\n⚠️  下载已中断")
+            print(f"💡 提示: 再次运行脚本可从断点继续下载")
+            try:
+                sock.close()
+            except:
+                pass
+            return False
         except Exception as e:
             print(f"❌ 下载错误: {e}")
             import traceback
@@ -185,8 +216,8 @@ class AdbTransferClient:
                 pass
             return False
     
-    def download_all(self, save_dir):
-        """下载所有文件"""
+    def download_all(self, save_dir, resume=True):
+        """下载所有文件（支持断点续传）"""
         print("\n📱 获取文件列表...")
         file_list = self.get_file_list()
         
@@ -197,18 +228,43 @@ class AdbTransferClient:
         for i, file_info in enumerate(file_list):
             file_type = "🎬" if file_info['type'] == 'video' else "🖼️"
             size_str = self.format_size(file_info['size'])
-            print(f"   {i+1}. {file_type} {file_info['name']} ({size_str})")
+            
+            # 检查是否已部分下载
+            filepath = os.path.join(save_dir, file_info['name'])
+            status = ""
+            if os.path.exists(filepath):
+                existing_size = os.path.getsize(filepath)
+                if existing_size >= file_info['size']:
+                    status = " ✓已完成"
+                else:
+                    percent = (existing_size / file_info['size']) * 100
+                    status = f" 🔄{percent:.0f}%"
+            
+            print(f"   {i+1}. {file_type} {file_info['name']} ({size_str}){status}")
         
         print(f"\n💾 保存目录: {os.path.abspath(save_dir)}")
+        if resume:
+            print("🔄 断点续传已启用")
         print("\n开始下载...\n")
         
         success_count = 0
         fail_count = 0
+        skip_count = 0
         start_time = datetime.now()
         
         for i, file_info in enumerate(file_list):
+            # 检查文件是否已完整下载
+            filepath = os.path.join(save_dir, file_info['name'])
+            if resume and os.path.exists(filepath):
+                existing_size = os.path.getsize(filepath)
+                if existing_size >= file_info['size']:
+                    skip_count += 1
+                    success_count += 1
+                    print(f"[{i+1}/{len(file_list)}] ✅ 跳过已完成的文件: {file_info['name']}\n")
+                    continue
+            
             print(f"[{i+1}/{len(file_list)}] ", end='')
-            if self.download_file(i, save_dir):
+            if self.download_file(i, save_dir, resume=resume):
                 success_count += 1
             else:
                 fail_count += 1
@@ -220,8 +276,11 @@ class AdbTransferClient:
         print("\n" + "="*60)
         print("📊 传输完成!")
         print(f"   ✅ 成功: {success_count} 个文件")
+        if skip_count > 0:
+            print(f"   ⏭️  跳过: {skip_count} 个文件（已存在）")
         if fail_count > 0:
             print(f"   ❌ 失败: {fail_count} 个文件")
+            print(f"   💡 提示: 再次运行脚本可从断点继续下载失败的文件")
         print(f"   ⏱️  用时: {duration:.1f} 秒")
         print("="*60)
         

@@ -102,6 +102,21 @@ class AdbTransferServer(
                         sendError(output, "Invalid file index")
                     }
                 }
+                command.startsWith("RESUME ") -> {
+                    // 断点续传
+                    val parts = command.substringAfter("RESUME ").split(" ")
+                    if (parts.size >= 2) {
+                        val index = parts[0].toIntOrNull()
+                        val offset = parts[1].toLongOrNull()
+                        if (index != null && offset != null && index < filesToTransfer.size) {
+                            resumeFile(output, filesToTransfer[index], offset)
+                        } else {
+                            sendError(output, "Invalid resume parameters")
+                        }
+                    } else {
+                        sendError(output, "Invalid resume command")
+                    }
+                }
                 command == "COUNT" -> {
                     // 发送文件数量
                     output.write("${filesToTransfer.size}\n".toByteArray())
@@ -181,6 +196,58 @@ class AdbTransferServer(
         } catch (e: Exception) {
             e.printStackTrace()
             sendError(output, "Transfer error: ${e.message}")
+        }
+    }
+    
+    /**
+     * 断点续传文件
+     */
+    private suspend fun resumeFile(output: OutputStream, mediaItem: MediaItem, offset: Long) = withContext(Dispatchers.IO) {
+        try {
+            val contentResolver = context.contentResolver
+            val inputStream = contentResolver.openInputStream(mediaItem.uri)
+            
+            if (inputStream == null) {
+                sendError(output, "Cannot open file")
+                return@withContext
+            }
+            
+            // 跳过已传输的字节
+            var skipped = 0L
+            while (skipped < offset) {
+                val toSkip = minOf(offset - skipped, 65536L)
+                val actualSkipped = inputStream.skip(toSkip)
+                if (actualSkipped <= 0) break
+                skipped += actualSkipped
+            }
+            
+            if (skipped != offset) {
+                sendError(output, "Failed to seek to offset")
+                inputStream.close()
+                return@withContext
+            }
+            
+            // 发送响应头
+            output.write("OK\n".toByteArray())
+            output.write("${mediaItem.size}\n".toByteArray())
+            output.write("$offset\n".toByteArray()) // 告诉客户端从哪里开始
+            output.write("${escapeJson(mediaItem.displayName)}\n".toByteArray())
+            
+            // 发送剩余的文件内容
+            val buffer = ByteArray(65536)
+            var bytesRead: Int
+            var totalBytes = offset
+            
+            while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                output.write(buffer, 0, bytesRead)
+                totalBytes += bytesRead
+            }
+            
+            inputStream.close()
+            output.flush()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            sendError(output, "Resume error: ${e.message}")
         }
     }
     

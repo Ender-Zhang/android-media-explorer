@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:2:1-44:12
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:2:1-56:12
+INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:2:1-56:12
+INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:2:1-56:12
+INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:2:1-56:12
 MERGED from [io.coil-kt:coil-compose:2.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/69d129b2f8f1fb783a936a54ee56eb93/transformed/coil-compose-2.4.0/AndroidManifest.xml:2:1-7:12
 MERGED from [io.coil-kt:coil-video:2.4.0] /Users/yuchenzhang/.gradle/caches/transforms-3/03e36c771492a89df328e7d4cbc5c8fb/transformed/coil-video-2.4.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.accompanist:accompanist-permissions:0.32.0] /Users/yuchenzhang/.gradle/caches/transforms-3/69682e572f9be1aa30d914bd88b7b005/transformed/accompanist-permissions-0.32.0/AndroidManifest.xml:17:1-23:12
@@ -120,9 +120,21 @@ uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:20:5-76
 	android:name
 		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:20:22-73
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:23:5-77
+	android:name
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:23:22-74
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:24:5-68
+	android:name
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:24:22-65
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:25:5-77
+	android:name
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:25:22-74
 application
-ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:22:5-42:19
-INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:22:5-42:19
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:27:5-54:19
+INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:27:5-54:19
 MERGED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/fa7874f77b28c8427ee3609f7197a31b/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-test-manifest:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/fa7874f77b28c8427ee3609f7197a31b/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.5.4] /Users/yuchenzhang/.gradle/caches/transforms-3/d2aa90db209a667a27d81ce51637b215/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
@@ -142,45 +154,55 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/yuchenzhang/.gradle/
 	android:extractNativeLibs
 		INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml
 	android:requestLegacyExternalStorage
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:31:9-52
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:36:9-52
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] /Users/yuchenzhang/.gradle/caches/transforms-3/88b02e5e32d386c009c0cf84573a232a/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:29:9-35
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:34:9-35
 	android:label
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:27:9-30
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:32:9-30
 	android:fullBackupContent
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:25:9-54
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:30:9-54
 	android:roundIcon
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:28:9-50
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:33:9-50
 	tools:targetApi
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:32:9-29
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:37:9-29
 	android:icon
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:26:9-45
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:31:9-45
 	android:allowBackup
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:23:9-35
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:28:9-35
 	android:theme
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:30:9-51
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:35:9-51
 	android:dataExtractionRules
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:24:9-65
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:29:9-65
 activity#com.mediaexplorer.MainActivity
-ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:33:9-41:20
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:38:9-46:20
 	android:exported
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:35:13-36
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:40:13-36
 	android:theme
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:36:13-55
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:41:13-55
 	android:name
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:34:13-41
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:39:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:37:13-40:29
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:42:13-45:29
 action#android.intent.action.MAIN
-ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:38:17-69
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:43:17-69
 	android:name
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:38:25-66
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:43:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:39:17-77
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:44:17-77
 	android:name
-		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:39:27-74
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:44:27-74
+service#com.mediaexplorer.FileTransferService
+ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:49:9-53:56
+	android:enabled
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:51:13-35
+	android:exported
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:52:13-37
+	android:foregroundServiceType
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:53:13-53
+	android:name
+		ADDED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml:50:13-48
 uses-sdk
 INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/yuchenzhang/cs/playground/MediaExplorer/app/src/main/AndroidManifest.xml
