@@ -1,0 +1,20 @@
+R_DEF: Internal format may change without notice
+local
+drawable ic_launcher
+string all_media
+string app_name
+string created_time
+string duration
+string file_path
+string file_size
+string grant_permission
+string loading
+string no_media_found
+string permission_rationale
+string permission_required
+string photos
+string resolution
+string videos
+style Theme.MediaExplorer
+xml backup_rules
+xml data_extraction_rules

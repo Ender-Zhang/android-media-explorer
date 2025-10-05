@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_media">全部</string>
+    <string name="app_name">媒体浏览器</string>
+    <string name="created_time">创建时间</string>
+    <string name="duration">时长</string>
+    <string name="file_path">文件路径</string>
+    <string name="file_size">文件大小</string>
+    <string name="grant_permission">授予权限</string>
+    <string name="loading">加载中...</string>
+    <string name="no_media_found">未找到媒体文件</string>
+    <string name="permission_rationale">此应用需要访问您的照片和视频以显示它们。</string>
+    <string name="permission_required">需要存储权限</string>
+    <string name="photos">照片</string>
+    <string name="resolution">分辨率</string>
+    <string name="videos">视频</string>
+    <style name="Theme.MediaExplorer" parent="android:Theme.Material.Light.NoActionBar"/>
+</resources>

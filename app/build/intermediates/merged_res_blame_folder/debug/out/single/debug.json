@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.mediaexplorer.app-merged_res-53:/drawable_ic_launcher.xml.flat",
+        "source": "com.mediaexplorer.app-main-55:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "com.mediaexplorer.app-merged_res-53:/xml_backup_rules.xml.flat",
+        "source": "com.mediaexplorer.app-main-55:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.mediaexplorer.app-merged_res-53:/xml_data_extraction_rules.xml.flat",
+        "source": "com.mediaexplorer.app-main-55:/xml/data_extraction_rules.xml"
+    }
+]
